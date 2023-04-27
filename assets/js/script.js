@@ -26,7 +26,15 @@ function getCity(){
         testDiv.setAttribute('class', 'test')
         testDiv.textContent = data[0].name
         cardEl.appendChild(testDiv)
-        return data
+        // return data
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=496722594d14437755a15609505942d8`)
+        .then(function(response){
+            return response.json()
+        }).then(function(data){
+            console.log(data)
+        })
+
     })
     // .then(function(){
     //     console.log("We Are Here");
