@@ -1,6 +1,5 @@
 var apiKey= "121f1ff0086c8c01f781759a701c2a43"
 
-var input = document.getElementById('submit-button')
 
 
 
@@ -13,10 +12,12 @@ let cardEl = document.getElementById('results-container')
 // var cityFeatured = document.querySelector(".");
 // var cityDetails = document.querySelector(".");
 // var futureDetails = document.querySelector(".");
-let searchParams = "Philadelphia"
+// let searchParams = "Philadelphia"
 
 function getCity(){
-    var url=`http://api.openweathermap.org/geo/1.0/direct?q=${searchParams}&appid=${apiKey}`
+    var input = document.getElementById('submit-button').value
+
+    var url=`http://api.openweathermap.org/geo/1.0/direct?q=${input}&appid=${apiKey}`
     fetch(url)
     .then(function (response){
         return response.json()
@@ -47,8 +48,29 @@ function getCity(){
             console.log(temperature)
             var wind = data.wind.speed
             var humidity = data.main.humidity
+
+
+
+            var tempEl = document.getElementById('temperature')
+            tempEl.textContent = temperature
+            var cityEl = document.getElementById('cityName')
+            cityEl.textContent = cityName
+            var windEl = document.getElementById('windSpeed')
+            windEl.textContent = windSpeed
+            var iconEl = document.getElementById('icon')
+            iconEl.textContent = icon
+            var descEl = document.getElementById('description')
+            descEl.textContent = description
+            var humidityEl = document.getElementById('humid')
+            humidityEl.textContent = humid
+            
+
+
+
+
         })
 
+        input.onclick = getCity
     })
     // .then(function(){
     //     console.log("We Are Here");
@@ -70,7 +92,6 @@ function getWeatherCurrent(lat, lon){
 console.log(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=496722594d14437755a15609505942d8`)
 }
 
-getCity()
 
 
 var formEl = document.querySelector('#search-form');
@@ -89,7 +110,5 @@ var reseultsEl = document.querySelector('#results-container');
 //   }
   
 //   getApi(requestUrl);
-  function test(){
-    console.log(input.value)
-  }
-  input.onclick = test
+
+document.getElementById("subButton").onclick = getCity
