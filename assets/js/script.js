@@ -1,5 +1,9 @@
 var apiKey= "121f1ff0086c8c01f781759a701c2a43"
 
+var input = document.getElementById('submit-button')
+
+
+
 
 var date = dayjs();
 let cardEl = document.getElementById('results-container')
@@ -33,6 +37,16 @@ function getCity(){
             return response.json()
         }).then(function(data){
             console.log(data)
+
+
+            var cityName = data.name
+            //var date = data.name
+            var icon = data.weather[0].icon
+            var desc = data.weather[0].description
+            var temperature = Math.round((data.main.temp - 273) * (9/5) + 32)
+            console.log(temperature)
+            var wind = data.wind.speed
+            var humidity = data.main.humidity
         })
 
     })
@@ -75,5 +89,7 @@ var reseultsEl = document.querySelector('#results-container');
 //   }
   
 //   getApi(requestUrl);
-  
-  
+  function test(){
+    console.log(input.value)
+  }
+  input.onclick = test
