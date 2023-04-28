@@ -19,7 +19,7 @@ let futureEl = document.getElementById('future')
 function getCity(){
     var input = document.getElementById('submit-button').value
 
-    var url=`http://api.openweathermap.org/geo/1.0/direct?q=${input}&appid=${apiKey}`
+    var url=`https://api.openweathermap.org/geo/1.0/direct?q=${input}&appid=${apiKey}`
     fetch(url)
     .then(function (response){
         return response.json()
